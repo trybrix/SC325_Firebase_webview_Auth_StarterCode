@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -9,7 +10,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,86 +17,72 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="571.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_firebase_webview_auth.view.AccessFBView">
-   <children>
-      <MenuBar layoutY="1.0" prefHeight="27.0" prefWidth="894.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-                  <MenuItem mnemonicParsing="false" text="Register" />
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <HBox layoutX="6.0" layoutY="28.0" prefHeight="535.0" prefWidth="880.0">
-         <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="129.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <effect>
-                        <InnerShadow>
-                           <color>
-                              <Color red="0.20652228593826294" green="0.1679999977350235" blue="0.6000000238418579" />
-                           </color>
-                        </InnerShadow>
-                     </effect>
-                     <image>
-                        <Image url="@profile_empty.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-            <VBox prefHeight="535.0" prefWidth="551.0">
-               <children>
-                  <TextArea fx:id="outputField" prefHeight="184.0" prefWidth="514.0" />
-                  <TableView prefHeight="351.0" prefWidth="514.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                  </TableView>
-               </children>
-            </VBox>
-            <VBox prefHeight="535.0" prefWidth="241.0" spacing="10.0">
-               <children>
-                  <TextField fx:id="nameField" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="272.0" promptText="Name" />
-                  <TextField fx:id="majorField" promptText="Major" />
-                  <TextField fx:id="ageField" promptText="Age" />
-                  <HBox prefHeight="32.0" prefWidth="465.0">
-                     <children>
-                        <Button fx:id="readButton" mnemonicParsing="false" onAction="#readRecord" prefHeight="25.0" prefWidth="123.0" text="Read" textAlignment="CENTER">
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button fx:id="writeButton" mnemonicParsing="false" onAction="#addRecord" prefHeight="25.0" prefWidth="128.0" text="Write" textAlignment="CENTER">
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <Button fx:id="switchroot" mnemonicParsing="false" onAction="#switchToSecondary" prefHeight="25.0" prefWidth="283.0" text="Switch" textAlignment="CENTER" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </VBox>
-         </children>
-      </HBox>
-   </children>
-   <opaqueInsets>
-      <Insets />
-   </opaqueInsets>
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_firebase_webview_auth.view.AccessFBView">
+    <children>
+        <MenuBar layoutY="1.0" prefHeight="27.0" prefWidth="900.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Register" onAction="#switchToSecondary"/>
+                        <MenuItem mnemonicParsing="false" text="Close" onAction="#handleClose"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" onAction="#handleDelete"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Theme">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Change Theme" onAction="#handleChangeTheme"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" onAction="#handleAbout"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <HBox layoutX="6.0" layoutY="28.0" prefHeight="565.0" prefWidth="888.0">
+            <children>
+                <VBox prefHeight="565.0" prefWidth="250.0" spacing="10.0">
+                    <children>
+                        <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@profile_empty.png" />
+                            </image>
+                        </ImageView>
+                        <TextField fx:id="fnField" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="250.0" promptText="First Name" />
+                        <TextField fx:id="lnField" promptText="Last Name" />
+                        <TextField fx:id="depField" promptText="Department" />
+                        <TextField fx:id="majorField" promptText="Major" />
+                        <TextField fx:id="emailField" promptText="Email" />
+                        <TextField fx:id="imgField" promptText="Image URL" />
+                        <Button fx:id="readButton" mnemonicParsing="false" onAction="#readRecord" prefHeight="25.0" prefWidth="100.0" text="Read" />
+                        <Button fx:id="writeButton" mnemonicParsing="false" onAction="#addRecord" prefHeight="25.0" prefWidth="100.0" text="Write" />
+                        <Button fx:id="switchButton" mnemonicParsing="false" onAction="#switchToSecondary" prefHeight="25.0" prefWidth="100.0" text="Switch" />
+                        <TextArea fx:id="outputField" prefHeight="200.0" prefWidth="250.0" />
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </VBox>
+                <VBox prefHeight="565.0" prefWidth="638.0">
+                    <children>
+                        <TableView fx:id="tableView" prefHeight="551.0" prefWidth="638.0">
+                            <columns>
+                                <TableColumn fx:id="colFN" prefWidth="150.0" text="First Name" />
+                                <TableColumn fx:id="colLN" prefWidth="150.0" text="Last Name" />
+                                <TableColumn fx:id="colDep" prefWidth="100.0" text="Department" />
+                                <TableColumn fx:id="colMajor" prefWidth="100.0" text="Major" />
+                                <TableColumn fx:id="colEmail" prefWidth="100.0" text="Email" />
+                                <TableColumn fx:id="colImg" prefWidth="100.0" text="Image URL" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
 </AnchorPane>
