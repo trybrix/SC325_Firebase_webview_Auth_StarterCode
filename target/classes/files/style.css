@@ -1,0 +1,33 @@
+.root {
+    -fx-font-family: "Arial";
+}
+
+.label {
+    -fx-font-size: 14pt;
+}
+
+.button {
+    -fx-background-color: #A0522D;
+    -fx-text-fill: white;
+}
+
+.text-field {
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+}
+
+.text-area {
+    -fx-control-inner-background: #F0E68C;
+}
+
+.table-view {
+    -fx-table-cell-border-color: transparent;
+}
+
+.menu-bar {
+    -fx-background-color: #8B4513;
+    -fx-text-fill: white;
+}
+
+.menu {
+    -fx-text-fill: white;
+}
