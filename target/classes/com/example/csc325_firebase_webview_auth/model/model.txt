@@ -1,0 +1,9 @@
+
+Model
+Model classes are non-visual classes that encapsulate the app's data.
+Therefore, the model can be thought of as representing the app's domain model,
+which usually includes a data model along with business and validation logic.
+Examples of model objects include data transfer objects (DTOs), Plain Old CLR Objects (POCOs),
+and generated entity and proxy objects.
+
+Model classes are typically used in conjunction with services or repositories that encapsulate data access and caching.
